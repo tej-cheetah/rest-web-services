@@ -3,7 +3,7 @@ package com.example.resfulwebservices.users;
 import java.net.URI;
 import java.util.List;
 
-import javax.xml.ws.Response;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class UserController {
 	}
 	
 	@PostMapping(path = "/users")
-	public ResponseEntity<Object> addUser(@RequestBody User user) {
+	public ResponseEntity<Object> addUser(@Valid @RequestBody User user) {
 		User savedUser = service.addUser(user);
 		
 		URI location = ServletUriComponentsBuilder

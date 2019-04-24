@@ -3,11 +3,18 @@ package com.example.resfulwebservices.users;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
 	
 	private int id;
+	
+	@Size(min = 2, message = "Name should have atlead two characters" )
 	private String name;
-	private Date birthDate;
+	
+	@Past
+	private Date birthDate; 
 	private List<UserPost> posts;
 	
 	public int getId() {
