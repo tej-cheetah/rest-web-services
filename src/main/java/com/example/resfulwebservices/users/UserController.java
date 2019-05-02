@@ -42,7 +42,7 @@ public class UserController {
 		User user = service.findOne(id);
 		if(user == null) throw new UserNotFoundException("id-" + id);
 		EntityModel<User> model = new EntityModel<>(user);
-		WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).users());
+		WebMvcLinkBuilder linkTo = linkTo(methodOn(UserController.class).users());
 		model.add(linkTo.withRel("all-users"));
 		return model;
 	}
@@ -59,25 +59,25 @@ public class UserController {
 		return ResponseEntity.created(location).build();
 	}
 	
-	@GetMapping(path = "/users/{id}/posts")
-	public List<UserPost> retrieveAllPostsOfUser(@PathVariable int id) {
-		return service.getUserPosts(id);
-	}
+//	@GetMapping(path = "/users/{id}/posts")
+//	public List<UserPost> retrieveAllPostsOfUser(@PathVariable int id) {
+//		return service.getUserPosts(id);
+//	}
 	
-	@PostMapping(path = "/users/{id}/posts")
-	public ResponseEntity<Object> addPost(@RequestBody UserPost post, @PathVariable int id) {
-		service.addPostsForUser(id, post).getPosts();
-		URI location = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/id")
-				.buildAndExpand(id).toUri();
-		return ResponseEntity.created(location).build();
-	}
+//	@PostMapping(path = "/users/{id}/posts")
+//	public ResponseEntity<Object> addPost(@RequestBody UserPost post, @PathVariable int id) {
+//		service.addPostsForUser(id, post).getPosts();
+//		URI location = ServletUriComponentsBuilder
+//				.fromCurrentRequest()
+//				.path("/id")
+//				.buildAndExpand(id).toUri();
+//		return ResponseEntity.created(location).build();
+//	}
 	
-	@GetMapping(path = "/users/{id}/posts/{post_id}")
-	public UserPost getPostDetails(@PathVariable int id, @PathVariable int post_id) {
-		return service.getPostDetails(id, post_id);
-	}
+//	@GetMapping(path = "/users/{id}/posts/{post_id}")
+//	public UserPost getPostDetails(@PathVariable int id, @PathVariable int post_id) {
+//		return service.getPostDetails(id, post_id);
+//	}
 	
 	@DeleteMapping(path = "/users/{id}")
 	public void deleteUser(@PathVariable int id) {
